@@ -2,8 +2,10 @@ import axios from "axios";
 import React from "react";
 
 export async function generateMetadata({ params }) {
+  const x = await getData(params.id);
   return {
-    title: "Page : " + params.id,
+    title: `${x.id} - ${x.title}`,
+    description: x.body,
   };
 }
 
@@ -19,12 +21,14 @@ const getData = async (id) => {
 
 const PageID = async ({ params }) => {
   const x = await getData(params.id);
+
   return (
-    <div>
-      <h1>
+    <>
+      <p>
         {x.id} - {x.title}
-      </h1>
-    </div>
+      </p>
+      <p>{x.body}</p>
+    </>
   );
 };
 
