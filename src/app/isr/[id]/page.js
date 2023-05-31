@@ -11,6 +11,14 @@ const fetchPostData = async (postId) => {
 	return response.data;
 };
 
+export async function generateMetadata({ params }) {
+	const data = await fetchPostData(params.id);
+	return {
+		title: `${data.id} - ${data.title}`,
+		description: data.body,
+	};
+}
+
 const getPostPage = async ({ params }) => {
 	const { id } = params;
 	const data = await fetchPostData(id);
