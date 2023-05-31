@@ -15,7 +15,9 @@ const page = () => {
 	}, [inView]);
 
 	const fetchData = async () => {
-		const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}`);
+		const response = await fetch(
+			`https://jsonplaceholder.typicode.com/posts?_page=${page}`,
+		);
 		const newData = await response.json();
 		setData((prevData) => [...prevData, ...newData]);
 		setPage((prevPage) => prevPage + 1);

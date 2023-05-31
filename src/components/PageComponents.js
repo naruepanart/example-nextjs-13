@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
@@ -8,7 +8,7 @@ const PageComponents = (props) => {
 	const { id, title, body } = posts;
 	return (
 		<>
-			<Card>
+			<Card className="mb-3">
 				<Card.Body>
 					<Link href={`/ssr/${id}`}>
 						<Card.Title>
