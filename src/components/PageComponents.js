@@ -3,8 +3,8 @@ import Link from "next/link";
 import Card from "react-bootstrap/Card";
 
 const DataComponents = (props) => {
-	const { data } = props;
-	const { id, title, body } = data;
+	const { posts } = props;
+	const { id, title, body } = posts;
 	return (
 		<>
 			<Card>
