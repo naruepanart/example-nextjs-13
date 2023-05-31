@@ -3,7 +3,9 @@ import React from "react";
 
 // Fetches data for a single post using ISR
 const fetchPostData = async (id) => {
-	const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+	const response = await axios.get(
+		`https://jsonplaceholder.typicode.com/posts/${id}`,
+	);
 	return response.data;
 };
 
