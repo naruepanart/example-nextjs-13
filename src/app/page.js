@@ -1,5 +1,5 @@
 "use client";
-import PageComponents from "@/components/PageComponents";
+import PageComponents from "../components/PageComponents";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -23,6 +23,7 @@ const page = () => {
 
 	return (
 		<>
+			<h1>Home</h1>
 			{data.map((item) => (
 				<PageComponents key={item.id} posts={item} />
 			))}
