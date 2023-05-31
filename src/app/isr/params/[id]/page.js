@@ -12,8 +12,8 @@ const fetchPostData = async (id) => {
 // Generates static params for all posts using SSG
 export async function generateStaticParams() {
 	const posts = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-	return posts.data.map((post) => ({
-		params: { id: post.id },
+	return posts.data.slice(0, 5).map((post) => ({
+		id: post.id.toString(),
 	}));
 }
 
