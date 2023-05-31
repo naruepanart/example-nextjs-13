@@ -1,3 +1,4 @@
+import PageComponents from "../../../components/PageComponents";
 import axios from "axios";
 import React from "react";
 
@@ -22,10 +23,7 @@ const getPostPage = async ({ params }) => {
 	return (
 		<>
 			<h1>SSG</h1>
-			<p>
-				{data.id} - {data.title}
-			</p>
-			<p>{data.body}</p>
+			<PageComponents key={data.id} posts={data} />
 		</>
 	);
 };
