@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
 
-const DataComponents = (props) => {
+const PageComponents = (props) => {
 	const { posts } = props;
 	const { id, title, body } = posts;
 	return (
@@ -11,7 +12,7 @@ const DataComponents = (props) => {
 				<Card.Body>
 					<Link href={`/ssr/${id}`}>
 						<Card.Title>
-							{id} - {title}
+							{id}.{title}
 						</Card.Title>
 					</Link>
 					<Card.Text>{body}</Card.Text>
@@ -21,4 +22,4 @@ const DataComponents = (props) => {
 	);
 };
 
-export default DataComponents;
+export default PageComponents;
