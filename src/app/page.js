@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import PageComponents from "@/components/PageComponents";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -27,13 +27,7 @@ const DataFetchingComponent = () => {
 	return (
 		<>
 			{data.map((x) => (
-				<div key={x.id}>
-					<Link href={`/ssr/${x.id}`}>
-						<h1>
-							{x.id}-{x.title}
-						</h1>
-					</Link>
-				</div>
+				<PageComponents key={x.id} data={x} />
 			))}
 			<div ref={ref} />
 		</>
