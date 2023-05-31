@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npm run format && next build",
+    "build": "next build",
     "start": "next start",
     "format": "npx rome format src --write",
     "lint": "next lint"
