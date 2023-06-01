@@ -3,6 +3,7 @@ import "../css/globals.css";
 
 import { Inter } from "next/font/google";
 import NavbarComponent from "@/components/NavbarComponent";
+import { SSRProvider } from "@/components/bootstrap";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -76,10 +77,10 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<>
+				<SSRProvider>
 					<NavbarComponent />
 					<main>{children}</main>
-				</>
+				</SSRProvider>
 			</body>
 		</html>
 	);
