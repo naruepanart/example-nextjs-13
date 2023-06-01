@@ -1,17 +1,14 @@
 import PageComponent from "../../../components/PageComponent";
 import axios from "axios";
-import React, { cache } from "react";
+import React from "react";
 
-export async function generateMetadata({ id }) {
-	try {
-		const post = await cache(fetchPostData(id));
-		if (!post) throw new Error("No data retrieved");
-		const title = `${post.id} - ${post.title}`;
-		const description = post.body;
-		return { title, description };
-	} catch (error) {
-		throw new Error("Failed to generate metadata");
-	}
+export async function generateMetadata({ params }) {
+	const postData = await fetchPostData(params.id);
+	if (!postData) throw new Error("No data retrieved");
+	return {
+		title: `${postData.id} - ${postData.title}`,
+		description: postData.body,
+	};
 }
 
 const fetchPostData = async (postId) => {
