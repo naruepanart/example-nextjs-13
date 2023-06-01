@@ -8,8 +8,8 @@ import { SSRProvider } from "@/components/bootstrap";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "NextJS CSR,ISR,SSR,SSG",
-	description: "NextJS CSR,ISR,SSR,SSG",
+	title: "Example NextJS 13 - CSR,ISR,SSR,SSG",
+	description: "Example NextJS 13 - CSR,ISR,SSR,SSG",
 	robots: {
 		index: true,
 		follow: true,

@@ -12,7 +12,7 @@ const CSRpage = () => {
 		if (inView) {
 			fetchPosts();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inView]);
 
 	const fetchPosts = async () => {
