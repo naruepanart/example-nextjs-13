@@ -9,19 +9,19 @@ const CSRPageComponent = () => {
 	const [posts, setPosts] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ref, inView] = useInView();
-	const [loading, setLoading] = useState(false);
+
 
 	useEffect(() => {
 		if (inView) {
 			const fetchPosts = async () => {
-				setLoading(true);
+		
 				const apiUrl = `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}`;
 				const cacheOptions = { next: { revalidate: 3600 } };
 				const response = await axios.get(apiUrl, cacheOptions);
 				const newPosts = await response.data;
 				setPosts((prevPosts) => [...prevPosts, ...newPosts]);
 				setCurrentPage((prevPage) => prevPage + 1);
-				setLoading(false);
+			
 			};
 			fetchPosts();
 		}
@@ -31,7 +31,7 @@ const CSRPageComponent = () => {
 		<>
 			<h1>CSR</h1>
 			{posts.map((post) => (
-				<Card className="mb-3" key={post.id}>
+				<Card className="my-3" key={post.id}>
 					<Card.Body>
 						<Link href={`/ssr/${post.id}`}>
 							<Card.Title>
@@ -42,7 +42,7 @@ const CSRPageComponent = () => {
 					</Card.Body>
 				</Card>
 			))}
-			{loading && <p>Loading...</p>}
+		
 			<div ref={ref} />
 		</>
 	);

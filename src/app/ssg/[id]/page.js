@@ -1,4 +1,4 @@
-import PageComponent from "../../../components/PageComponent";
+import PageComponent from "@/components/PageComponent";
 import axios from "axios";
 import React from "react";
 

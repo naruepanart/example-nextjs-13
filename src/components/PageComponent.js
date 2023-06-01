@@ -8,7 +8,7 @@ const PageComponent = (props) => {
 	const { id, title, body } = posts;
 	return (
 		<>
-			<Card className="mb-3">
+			<Card className="my-3">
 				<Card.Body>
 					<Link href={`/ssr/${id}`}>
 						<Card.Title>
