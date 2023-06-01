@@ -1,12 +1,15 @@
 import React from "react";
+import CSRPageComponent from "./csr/CSRPageComponent";
+
 
 export const metadata = {
-	title: "Home Content",
-	description: "Description Home Content",
+	title: "HOME PAGE CSR",
 };
 
 const page = () => {
-	return <div>Content</div>;
+	return (
+		<CSRPageComponent />
+	);
 };
 
 export default page;
