@@ -1,9 +1,9 @@
 "use client";
-import PageComponent from "@/components/PageComponent";
 import React, { useEffect, useState } from "react";
+import PageComponent from "@/components/PageComponent";
 import { useInView } from "react-intersection-observer";
 
-const page = () => {
+const CSRpage = () => {
 	const [posts, setPosts] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ref, inView] = useInView();
@@ -12,6 +12,7 @@ const page = () => {
 		if (inView) {
 			fetchPosts();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inView]);
 
 	const fetchPosts = async () => {
@@ -34,4 +35,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default CSRpage;
