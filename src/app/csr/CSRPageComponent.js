@@ -9,43 +9,46 @@ const CSRPageComponent = () => {
 	const [posts, setPosts] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ref, inView] = useInView();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		if (inView) {
+			const fetchPosts = async () => {
+				setLoading(true);
+				const apiUrl = `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}`;
+				const cacheOptions = { next: { revalidate: 3600 } };
+				const response = await axios.get(apiUrl, cacheOptions);
+				const newPosts = await response.data;
+				setPosts(prevPosts => [...prevPosts, ...newPosts]);
+				setCurrentPage(prevPage => prevPage + 1);
+				setLoading(false);
+			};
 			fetchPosts();
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [inView]);
-
-	const fetchPosts = async () => {
-		const apiUrl = `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}`;
-		const cacheOptions = { next: { revalidate: 3600 } };
-		const response = await axios.get(apiUrl, cacheOptions);
-		const newPosts = await response.data;
-		setPosts((prevPosts) => [...prevPosts, ...newPosts]);
-		setCurrentPage((prevPage) => prevPage + 1);
-	};
+	}, [currentPage, inView]);
 
 	return (
 		<>
 			<h1>CSR</h1>
-			{posts.map((post) => (
-				<>
-					<Card className="mb-3">
-						<Card.Body>
-							<Link href={`/ssr/${post.id}`}>
-								<Card.Title>
-									{post.id}.{post.title}
-								</Card.Title>
-							</Link>
-							<Card.Text>{post.body}</Card.Text>
-						</Card.Body>
-					</Card>
-				</>
+			{posts.map(post => (
+				<Card className="mb-3" key={post.id}>
+					<Card.Body>
+						<Link href={`/ssr/${post.id}`}>
+							<Card.Title>
+								{post.id}.{post.title}
+							</Card.Title>
+						</Link>
+						<Card.Text>{post.body}</Card.Text>
+					</Card.Body>
+				</Card>
 			))}
+			{loading && <p>Loading...</p>}
 			<div ref={ref} />
 		</>
 	);
 };
+
+
+
 
 export default CSRPageComponent;
