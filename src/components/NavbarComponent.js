@@ -26,7 +26,7 @@ function NavbarComponent() {
 						</Nav.Link>
 						<NavDropdown title="ISR" id="collasible-nav-dropdown">
 							<NavDropdown.Item href="/isr">ISR</NavDropdown.Item>
-							<NavDropdown.Item href="/isr-ssg">ISR-SSG</NavDropdown.Item>
+							<NavDropdown.Item href="/isr-ssg/1">ISR-SSG</NavDropdown.Item>
 						</NavDropdown>
 					</Nav>
 					<Nav>
