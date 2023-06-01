@@ -19,8 +19,8 @@ const CSRPageComponent = () => {
 				const cacheOptions = { next: { revalidate: 3600 } };
 				const response = await axios.get(apiUrl, cacheOptions);
 				const newPosts = await response.data;
-				setPosts(prevPosts => [...prevPosts, ...newPosts]);
-				setCurrentPage(prevPage => prevPage + 1);
+				setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+				setCurrentPage((prevPage) => prevPage + 1);
 				setLoading(false);
 			};
 			fetchPosts();
@@ -30,7 +30,7 @@ const CSRPageComponent = () => {
 	return (
 		<>
 			<h1>CSR</h1>
-			{posts.map(post => (
+			{posts.map((post) => (
 				<Card className="mb-3" key={post.id}>
 					<Card.Body>
 						<Link href={`/ssr/${post.id}`}>
@@ -47,8 +47,5 @@ const CSRPageComponent = () => {
 		</>
 	);
 };
-
-
-
 
 export default CSRPageComponent;

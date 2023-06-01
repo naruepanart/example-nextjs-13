@@ -12,20 +12,15 @@ export async function generateMetadata({ params }) {
 }
 
 const fetchPostData = async (postId) => {
-	try {
-		const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
-		const response = await axios.get(apiUrl, { cache: "no-store" });
-		if (response.status !== 200) {
-			throw new Error(`Unexpected response status: ${response.status}`);
-		}
-		return response.data;
-	} catch (error) {
-		console.error(error);
-		throw new Error(`Failed to fetch post data: ${error.message}`);
+	const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
+	const response = await axios.get(apiUrl, { cache: "no-store" });
+	if (response.status !== 200) {
+		throw new Error(`Unexpected response status: ${response.status}`);
 	}
+	return response.data;
 };
 
-const getPostPage = async ({ params }) => {
+const page = async ({ params }) => {
 	const { id } = params;
 	const data = await fetchPostData(id);
 	return (
@@ -36,4 +31,4 @@ const getPostPage = async ({ params }) => {
 	);
 };
 
-export default getPostPage;
+export default page;

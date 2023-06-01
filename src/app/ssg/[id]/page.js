@@ -13,16 +13,12 @@ export async function generateMetadata({ params }) {
 
 const fetchPostData = async (postId) => {
 	const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
-	try {
-		const response = await axios.get(apiUrl);
-		return response.data;
-	} catch (error) {
-		console.error(error);
-		throw new Error("Error fetching post data");
-	}
+
+	const response = await axios.get(apiUrl);
+	return response.data;
 };
 
-const getPostPage = async ({ params }) => {
+const page = async ({ params }) => {
 	const { id } = params;
 	const data = await fetchPostData(id);
 	return (
@@ -33,4 +29,4 @@ const getPostPage = async ({ params }) => {
 	);
 };
 
-export default getPostPage;
+export default page;
