@@ -20,7 +20,7 @@ const fetchPostData = async (postId) => {
 	return response.data;
 };
 
-const getPostPage = async ({ params }) => {
+const page = async ({ params }) => {
 	const { id } = params;
 	const data = await fetchPostData(id);
 	return (
@@ -31,4 +31,4 @@ const getPostPage = async ({ params }) => {
 	);
 };
 
-export default getPostPage;
+export default page;
