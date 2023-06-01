@@ -2,28 +2,35 @@ import PageComponents from "../../../../components/PageComponents";
 import axios from "axios";
 import React from "react";
 
-// Fetches data for a single post using ISR
-const fetchPostData = async (id) => {
-	const response = await axios.get(
-		`https://jsonplaceholder.typicode.com/posts/${id}`,
-	);
-	return response.data;
-};
-
-// Generates static params for all posts using SSG
-export async function generateStaticParams() {
-	const posts = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-	return posts.data.slice(0, 5).map((post) => ({
-		id: post.id.toString(),
-	}));
-}
-
 export async function generateMetadata({ params }) {
 	const data = await fetchPostData(params.id);
 	return {
 		title: `${data.id} - ${data.title}`,
 		description: data.body,
 	};
+}
+
+// Fetches data for a single post using ISR
+const fetchPostData = async (postId) => {
+	const response = await axios.get(
+		`https://jsonplaceholder.typicode.com/posts/${postId}`,
+		{ next: { revalidate: 60 } },
+	);
+	return response.data;
+};
+
+// Generates static params for all posts using SSG
+export async function generateStaticParams() {
+	const response = await axios.get(
+		`https://jsonplaceholder.typicode.com/posts`,
+	);
+	const posts = response.data.slice(0, 5);
+	const formattedPosts = posts.map((post) => {
+		return {
+			id: post.id.toString(),
+		};
+	});
+	return formattedPosts;
 }
 
 // Renders the page with data for a single post

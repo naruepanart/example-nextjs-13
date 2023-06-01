@@ -2,13 +2,6 @@ import PageComponents from "../../../components/PageComponents";
 import axios from "axios";
 import React from "react";
 
-const fetchPostData = async (postId) => {
-	const response = await axios.get(
-		`https://jsonplaceholder.typicode.com/posts/${postId}`,
-	);
-	return response.data;
-};
-
 export async function generateMetadata({ params }) {
 	const data = await fetchPostData(params.id);
 	return {
@@ -16,6 +9,13 @@ export async function generateMetadata({ params }) {
 		description: data.body,
 	};
 }
+
+const fetchPostData = async (postId) => {
+	const response = await axios.get(
+		`https://jsonplaceholder.typicode.com/posts/${postId}`,
+	);
+	return response.data;
+};
 
 const getPostPage = async ({ params }) => {
 	const { id } = params;
