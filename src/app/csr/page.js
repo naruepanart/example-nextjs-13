@@ -27,7 +27,6 @@ const page = () => {
 	return (
 		<>
 			<h1>CSR</h1>
-
 			{data.map((item) => (
 				<PageComponents key={item.id} posts={item} />
 			))}
