@@ -1,4 +1,4 @@
-import PageComponents from "../../../components/PageComponents";
+import PageComponent from "../../../components/PageComponent";
 import axios from "axios";
 import React from "react";
 
@@ -11,10 +11,14 @@ export async function generateMetadata({ params }) {
 }
 
 const fetchPostData = async (postId) => {
-	const response = await axios.get(
-		`https://jsonplaceholder.typicode.com/posts/${postId}`,
-	);
-	return response.data;
+	const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
+	try {
+		const response = await axios.get(apiUrl);
+		return response.data;
+	} catch (error) {
+		console.error(error);
+		throw new Error("Error fetching post data");
+	}
 };
 
 const getPostPage = async ({ params }) => {
@@ -23,7 +27,7 @@ const getPostPage = async ({ params }) => {
 	return (
 		<>
 			<h1>SSG</h1>
-			<PageComponents key={data.id} posts={data} />
+			<PageComponent key={data.id} posts={data} />
 		</>
 	);
 };

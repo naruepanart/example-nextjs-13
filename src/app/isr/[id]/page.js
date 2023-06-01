@@ -1,23 +1,29 @@
-import PageComponents from "../../../components/PageComponents";
+import PageComponent from "../../../components/PageComponent";
 import axios from "axios";
 import React from "react";
 
-export async function generateMetadata({ params }) {
-	const data = await fetchPostData(params.id);
-	return {
-		title: `${data.id} - ${data.title}`,
-		description: data.body,
-	};
+export async function generateMetadata({ id }) {
+	try {
+		const post = await fetchPostData(id);
+		if (!post) throw new Error("No data retrieved");
+		const title = `${post.id} - ${post.title}`;
+		const description = post.body;
+		return { title, description };
+	} catch (error) {
+		throw new Error("Failed to generate metadata");
+	}
 }
 
 const fetchPostData = async (postId) => {
-	const response = await axios.get(
-		`https://jsonplaceholder.typicode.com/posts/${postId}`,
-		{
-			next: { revalidate: 60 },
-		},
-	);
-	return response.data;
+	try {
+		const postResponse = await axios.get(
+			`https://jsonplaceholder.typicode.com/posts/${postId}`,
+			{ next: { revalidate: 60 } },
+		);
+		return postResponse.data;
+	} catch (error) {
+		throw error;
+	}
 };
 
 const page = async ({ params }) => {
@@ -26,7 +32,7 @@ const page = async ({ params }) => {
 	return (
 		<>
 			<h1>ISR</h1>
-			<PageComponents key={data.id} posts={data} />
+			<PageComponent key={data.id} posts={data} />
 		</>
 	);
 };

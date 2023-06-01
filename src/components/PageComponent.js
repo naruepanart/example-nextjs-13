@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
 
-const PageComponents = (props) => {
+const PageComponent = (props) => {
 	const { posts } = props;
 	const { id, title, body } = posts;
 	return (
@@ -22,4 +22,4 @@ const PageComponents = (props) => {
 	);
 };
 
-export default PageComponents;
+export default PageComponent;

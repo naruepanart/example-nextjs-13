@@ -1,34 +1,33 @@
 "use client";
-import PageComponents from "@/components/PageComponents";
+import PageComponent from "@/components/PageComponent";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const page = () => {
-	const [data, setData] = useState([]);
-	const [page, setPage] = useState(1);
+	const [posts, setPosts] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
 	const [ref, inView] = useInView();
 
 	useEffect(() => {
 		if (inView) {
-			fetchData();
+			fetchPosts();
 		}
 	}, [inView]);
 
-	const fetchData = async () => {
-		const response = await fetch(
-			`https://jsonplaceholder.typicode.com/posts?_page=${page}`,
-			{ next: { revalidate: 3600 } },
-		);
-		const newData = await response.json();
-		setData((prevData) => [...prevData, ...newData]);
-		setPage((prevPage) => prevPage + 1);
+	const fetchPosts = async () => {
+		const apiUrl = `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}`;
+		const cacheOptions = { next: { revalidate: 3600 } };
+		const response = await axios.get(apiUrl, cacheOptions);
+		const newPosts = await response.data;
+		setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+		setCurrentPage((prevPage) => prevPage + 1);
 	};
 
 	return (
 		<>
 			<h1>CSR</h1>
-			{data.map((item) => (
-				<PageComponents key={item.id} posts={item} />
+			{posts.map((post) => (
+				<PageComponent key={post.id} posts={post} />
 			))}
 			<div ref={ref} />
 		</>
