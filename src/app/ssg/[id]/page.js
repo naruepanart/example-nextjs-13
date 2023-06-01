@@ -13,7 +13,6 @@ export async function generateMetadata({ params }) {
 
 const fetchPostData = async (postId) => {
 	const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
-
 	const response = await axios.get(apiUrl);
 	return response.data;
 };

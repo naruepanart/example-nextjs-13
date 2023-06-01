@@ -14,14 +14,12 @@ const CSRPageComponent = () => {
 	useEffect(() => {
 		if (inView) {
 			const fetchPosts = async () => {
-		
 				const apiUrl = `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}`;
 				const cacheOptions = { next: { revalidate: 3600 } };
 				const response = await axios.get(apiUrl, cacheOptions);
 				const newPosts = await response.data;
 				setPosts((prevPosts) => [...prevPosts, ...newPosts]);
 				setCurrentPage((prevPage) => prevPage + 1);
-			
 			};
 			fetchPosts();
 		}
@@ -42,7 +40,6 @@ const CSRPageComponent = () => {
 					</Card.Body>
 				</Card>
 			))}
-		
 			<div ref={ref} />
 		</>
 	);
