@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/server';
+import Image from 'next/image'
 // App router includes @vercel/og.
 // No need to install it.
  
@@ -38,7 +39,7 @@ export async function GET(request) {
               justifyItems: 'center',
             }}
           >
-            <img
+            <Image
               alt="Vercel"
               height={200}
               src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
