@@ -1,9 +1,9 @@
 import PageComponent from "../../../../components/PageComponent";
 import axios from "axios";
-import React from "react";
+import React, { cache } from "react";
 
 export async function generateMetadata({ params }) {
-	const postData = await fetchPostData(params.id);
+	const postData = await cache(fetchPostData(params.id));
 	return {
 		title: `${postData.id} - ${postData.title}`,
 		description: postData.body,

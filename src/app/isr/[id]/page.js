@@ -1,10 +1,10 @@
 import PageComponent from "../../../components/PageComponent";
 import axios from "axios";
-import React from "react";
+import React, { cache } from "react";
 
 export async function generateMetadata({ id }) {
 	try {
-		const post = await fetchPostData(id);
+		const post = await cache(fetchPostData(id));
 		if (!post) throw new Error("No data retrieved");
 		const title = `${post.id} - ${post.title}`;
 		const description = post.body;
