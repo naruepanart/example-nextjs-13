@@ -1,4 +1,4 @@
-import PageComponent from "../../../../components/PageComponent";
+import PageComponent from "../../../components/PageComponent";
 import axios from "axios";
 import React from "react";
 
@@ -19,17 +19,13 @@ const fetchPostData = async (postId) => {
 };
 
 export async function generateStaticParams() {
-	try {
-		const { data } = await axios.get(
-			"https://jsonplaceholder.typicode.com/posts",
-		);
-		const posts = data
-			.slice(0, 5)
-			.map((post) => ({ id: post?.id?.toString() ?? "" }));
-		return posts;
-	} catch (error) {
-		throw new Error(`Error in generateStaticParams: ${error.message}`);
-	}
+	const { data } = await axios.get(
+		"https://jsonplaceholder.typicode.com/posts",
+	);
+	const posts = data
+		.slice(0, 5)
+		.map((post) => ({ id: post?.id?.toString() ?? "" }));
+	return posts;
 }
 
 const page = async ({ params }) => {

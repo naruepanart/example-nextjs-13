@@ -12,15 +12,11 @@ export async function generateMetadata({ params }) {
 }
 
 const fetchPostData = async (postId) => {
-	try {
-		const postResponse = await axios.get(
-			`https://jsonplaceholder.typicode.com/posts/${postId}`,
-			{ next: { revalidate: 60 } },
-		);
-		return postResponse.data;
-	} catch (error) {
-		throw error;
-	}
+	const postResponse = await axios.get(
+		`https://jsonplaceholder.typicode.com/posts/${postId}`,
+		{ next: { revalidate: 60 } },
+	);
+	return postResponse.data;
 };
 
 const page = async ({ params }) => {
