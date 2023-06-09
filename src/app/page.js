@@ -1,12 +1,44 @@
+"use client";
+import Link from "next/link";
 import React from "react";
-import CSRPageComponent from "./csr/CSRPageComponent";
+import { Card } from "react-bootstrap";
 
-export const metadata = {
-	title: "HOME PAGE CSR",
-};
+const links = [
+	{
+		label: "CSR",
+		href: "/csr",
+	},
+	{
+		label: "ISG",
+		href: "/dynamics/isg/1",
+	},
+	{
+		label: "ISR",
+		href: "/dynamics/isr",
+	},
+	{
+		label: "SSR",
+		href: "/dynamics/ssr",
+	},
+	{
+		label: "Statics",
+		href: "/statics",
+	},
+];
 
 const page = () => {
-	return <CSRPageComponent />;
+	return (
+		<div>
+			<h1>Main</h1>
+			{links.map((link) => (
+				<Card key={link.href} className="my-3">
+					<Card.Body>
+						<Link href={link.href}>{link.label}</Link>
+					</Card.Body>
+				</Card>
+			))}
+		</div>
+	);
 };
 
 export default page;

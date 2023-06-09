@@ -1,24 +1,25 @@
 import PageComponent from "@/components/PageComponent";
-import axios from "axios";
 import React from "react";
 
 export const metadata = {
-	title: "SSG",
+	title: "SSR",
 };
 
 const fetchPostData = async () => {
 	const apiUrl = `https://jsonplaceholder.typicode.com/posts`;
-	const response = await axios.get(apiUrl);
-	return response.data;
+	const cacheOptions = { cache: "no-store" };
+	//const cacheOptions = { next: { revalidate: 0 } }
+	const response = await fetch(apiUrl, cacheOptions); // getServerSideProps
+	return response.json();
 };
 
 const page = async () => {
 	const data = await fetchPostData();
 	return (
 		<>
-			<h1>SSG</h1>
+			<h1>SSR</h1>
 			{data.map((data) => (
-				<PageComponent key={data.id} posts={data} />
+				<PageComponent key={data.id} posts={data} link={`/dynamics/ssr`} />
 			))}
 		</>
 	);

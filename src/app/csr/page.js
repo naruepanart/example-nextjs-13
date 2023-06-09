@@ -1,5 +1,5 @@
 import React from "react";
-import CSRPageComponent from "./CSRPageComponent";
+import PageComponent from "./PageComponent";
 
 export const metadata = {
 	title: "CSR",
@@ -7,9 +7,10 @@ export const metadata = {
 
 const page = () => {
 	return (
-		<div>
-			<CSRPageComponent />
-		</div>
+		<>
+			<h1>CSR</h1>
+			<PageComponent />
+		</>
 	);
 };
 

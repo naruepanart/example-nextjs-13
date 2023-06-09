@@ -4,12 +4,12 @@ import Link from "next/link";
 import Card from "react-bootstrap/Card";
 
 const PageComponent = (props) => {
-	const { posts, link = "/statics" } = props;
+	const { posts } = props;
 	const { id, title, body } = posts;
 	return (
 		<Card className="my-3">
 			<Card.Body>
-				<Link href={`${link}/${id}`}>
+				<Link href={`/statics/${id}`}>
 					<Card.Title>
 						{id}.{title}
 					</Card.Title>

@@ -1,5 +1,4 @@
-import PageComponent from "@/components/PageComponent";
-import axios from "axios";
+import PageIDComponent from "@/components/PageIDComponent";
 import React from "react";
 
 export async function generateMetadata({ params }) {
@@ -12,9 +11,10 @@ export async function generateMetadata({ params }) {
 }
 
 const fetchPostData = async (postId) => {
-	const apiUrl = `https://jsonplaceholder.typicode.com/posts/${postId}`;
-	const response = await axios.get(apiUrl);
-	return response.data;
+	const url = `https://jsonplaceholder.typicode.com/posts/${postId}`;
+	const options = { next: { revalidate: 60 } };
+	const response = await fetch(url, options);
+	return response.json();
 };
 
 const page = async ({ params }) => {
@@ -22,8 +22,8 @@ const page = async ({ params }) => {
 	const data = await fetchPostData(id);
 	return (
 		<>
-			<h1>SSG</h1>
-			<PageComponent key={data.id} posts={data} />
+			<h1>ISR - {id}</h1>
+			<PageIDComponent key={data.id} posts={data} />
 		</>
 	);
 };

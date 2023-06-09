@@ -15,22 +15,15 @@ function NavbarComponent() {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link as={Link} href="/csr">
-							CSR
+						{/* <Nav.Link as={Link} href="/test">
+							TEST
 						</Nav.Link>
-						<Nav.Link as={Link} href="/ssr">
-							SSR
-						</Nav.Link>
-						<Nav.Link as={Link} href="/ssg">
-							SSG
-						</Nav.Link>
-						<NavDropdown title="ISR" id="collasible-nav-dropdown">
-							<NavDropdown.Item href="/isr">ISR</NavDropdown.Item>
-							<NavDropdown.Item href="/isr-ssg/1">ISR-SSG</NavDropdown.Item>
-						</NavDropdown>
+						<NavDropdown title="TEST" id="collasible-nav-dropdown">
+							<NavDropdown.Item href="/test">TEST</NavDropdown.Item>
+						</NavDropdown> */}
 					</Nav>
 					<Nav>
-						<Nav.Link href="#deets">Login</Nav.Link>
+						<Nav.Link href="#">Login</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

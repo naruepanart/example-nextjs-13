@@ -1,5 +1,4 @@
 import PageComponent from "@/components/PageComponent";
-import axios from "axios";
 import React from "react";
 
 export const metadata = {
@@ -9,8 +8,8 @@ export const metadata = {
 const fetchPostData = async () => {
 	const url = `https://jsonplaceholder.typicode.com/posts`;
 	const options = { next: { revalidate: 60 } };
-	const response = await axios.get(url, options);
-	return response.data;
+	const response = await fetch(url, options);
+	return response.json();
 };
 
 const page = async () => {
@@ -19,7 +18,7 @@ const page = async () => {
 		<>
 			<h1>ISR</h1>
 			{data.map((data) => (
-				<PageComponent key={data.id} posts={data} />
+				<PageComponent key={data.id} posts={data} link={`/dynamics/isr`} />
 			))}
 		</>
 	);
